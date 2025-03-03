@@ -1,14 +1,4 @@
-from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
-
-from .routes import router as GitaAPIRouter
-
-app = FastAPI()
-
-
-@app.get("/", tags = ["Root"], response_class = HTMLResponse)
-async def read_root() -> str:
-    return """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -102,7 +92,6 @@ async def read_root() -> str:
         }
         .language-badge {
             background: #f8f9fa;
-            color: #ff5e62;
             padding: 8px 16px;
             border-radius: 20px;
             font-weight: 500;
@@ -135,7 +124,7 @@ async def read_root() -> str:
         <p>A FastAPI-based REST API service that provides Bhagavad Gita verses in multiple languages. Access all 700 verses across 18 chapters with detailed translations, transliterations, and meanings.</p>
         <div style="margin-top: 20px">
             <a href="/docs" class="button">API Documentation</a>
-            <a href="https://github.com/bewithdhanu/gita-api-vercel" class="button" style="margin-left: 10px">GitHub Repository</a>
+            <a href="https://github.com/dhanu0001/gita-api-vercel" class="button" style="margin-left: 10px">GitHub Repository</a>
         </div>
     </div>
 
@@ -193,7 +182,4 @@ async def read_root() -> str:
         <p style="margin-top: 15px">For more information, bug reports, or contributions, please visit our <a href="https://github.com/dhanu0001/gita-api-vercel" style="color: #ff5e62">GitHub repository</a>.</p>
     </div>
 </body>
-</html> """
-
-
-app.include_router(GitaAPIRouter)
+</html> 

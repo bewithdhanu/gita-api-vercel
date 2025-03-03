@@ -36,6 +36,18 @@ class GitaVerse(BaseModel):
     purport: Union[str, List[str]]
 
 
+class APIInfo(BaseModel):
+    title: str
+    description: str
+    version: str
+    supported_languages: List[str]
+    total_verses: int
+    documentation_url: str
+    github_url: str
+    features: List[str]
+    endpoints: List[Dict[str, str]]
+
+
 class Language(str, Enum):
     telugu = "tel"
     odia = "odi"

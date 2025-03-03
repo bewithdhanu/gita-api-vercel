@@ -5,3 +5,5 @@ bs4>=0.0.1
 
 beautifulsoup4>=4.9.3
 pydantic>=1.8.0,<2.0.0
+jinja2>=2.11.2,<3.0.0
+aiofiles>=0.6.0,<1.0.0
