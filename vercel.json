@@ -1,6 +1,10 @@
 {
   "builds": [
-    {"src": "/server/api.py", "use": "@now/python"}
+    {
+      "src": "/server/api.py",
+      "use": "@vercel/python",
+      "config": { "runtime": "python3.9" }
+    }
   ],
   "routes": [
     {"src": "/(.*)", "dest": "server/api.py"}
