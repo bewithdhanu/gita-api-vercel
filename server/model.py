@@ -10,6 +10,18 @@ from pydantic import BaseModel
 ####################################################################################################
 # pydantic models
 ####################################################################################################
+class GitaVerseSimple(BaseModel):
+    chapter_no: int
+    verse_no: int
+    language: str
+    verse: Union[str, List[str]]
+    audio_link: str
+
+class GitaChapter(BaseModel):
+    chapter_no: int
+    chapter_name: str
+    verses_count: int
+
 class GitaVerse(BaseModel):
     chapter_no: int
     verse_no: Union[int, List[int]]

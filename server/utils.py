@@ -3,12 +3,47 @@
 ####################################################################################################
 import bisect
 import json
+from typing import List, Dict
 
 import requests
 from bs4 import BeautifulSoup
 
 chapter_wise_verse_counts = [47, 72, 43, 42, 29, 47, 30, 28, 34, 42, 55, 20, 35, 27, 20, 24, 28, 78]
 
+
+def get_chapters(language: str):
+    """Get chapter information from verse files"""
+    folder = f"verses_{language}_json"
+    chapters = []
+    
+    for chapter_no in range(1, 19):
+        with open(f"{folder}/{chapter_no}.json") as fh:
+            verse_data = json.load(fh)
+            # Get chapter name from first verse of each chapter
+            first_verse = verse_data["1"]
+            chapters.append({
+                "chapter_no": chapter_no,
+                "chapter_name": first_verse["chapter_name"],
+                "verses_count": chapter_wise_verse_counts[chapter_no - 1]
+            })
+    return chapters
+
+def get_chapter_verses(language: str, chapter_no: int) -> List[Dict]:
+    """Get all verses from a chapter"""
+    folder = f"verses_{language}_json"
+    with open(f"{folder}/{chapter_no}.json") as fh:
+        verses_data = json.load(fh)
+        verses = []
+        for verse_no in range(1, chapter_wise_verse_counts[chapter_no - 1] + 1):
+            verse = verses_data[str(verse_no)]
+            verses.append({
+                "chapter_no": chapter_no,
+                "verse_no": verse_no,
+                "language": language,
+                "verse": verse["verse"],
+                "audio_link": verse.get("audio_link", "")
+            })
+        return verses
 
 def get_ch_verse_no(verse_no):
     chapter_wise_cumulative_verse_counts = [47, 119, 162, 204, 233, 280, 310, 338, 372, 414, 469,
