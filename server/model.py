@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import List
+from typing import List, Dict
 from typing import Optional
 from typing import Tuple
 from typing import Union
@@ -14,6 +14,7 @@ class GitaVerseSimple(BaseModel):
     chapter_no: int
     verse_no: int
     language: str
+    chapter_name: str
     verse: Union[str, List[str]]
     audio_link: str
 
@@ -29,7 +30,7 @@ class GitaVerse(BaseModel):
     chapter_name: str
     verse: Union[str, List[str]]
     transliteration: Optional[Union[str, List[str]]] = ""
-    synonyms: Optional[Union[str, List[Tuple[str, str]]]] = ""
+    synonyms: Optional[Union[str, List[Dict[str, str]]]] = ""
     audio_link: Optional[str] = ""
     translation: str
     purport: Union[str, List[str]]
